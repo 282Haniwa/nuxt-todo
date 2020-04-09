@@ -1,5 +1,6 @@
 export default {
   mode: 'spa',
+  srcDir: 'src/',
   /*
    ** Headers of the page
    */
