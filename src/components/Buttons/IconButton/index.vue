@@ -10,16 +10,12 @@
 import SvgImage from '~/components/SvgImage';
 
 export default {
-  name: 'Button',
+  name: 'IconButton',
   components: { SvgImage },
   props: {
     icon: {
       type: [String, null],
       default: null,
-    },
-    label: {
-      type: String,
-      default: '',
     },
     variant: {
       type: String,
