@@ -18,6 +18,13 @@
     <Button variant="outline">Button</Button>
     <Button icon="icon/edit" variant="main">Button</Button>
     <hr width="100%" />
+
+    <span>IconButton</span>
+    <IconButton icon="icon/edit" variant="main" />
+    <IconButton icon="icon/edit" variant="lime" />
+    <IconButton icon="icon/edit" variant="white" />
+    <IconButton icon="icon/edit" variant="outline" />
+    <hr width="100%" />
   </div>
 </template>
 
@@ -25,9 +32,10 @@
 import TextField from '~/components/Inputs/TextField';
 import TextArea from '~/components/Inputs/TextArea';
 import Button from '~/components/Buttons/Button';
+import IconButton from '~/components/Buttons/IconButton';
 
 export default {
-  components: { TextField, TextArea, Button },
+  components: { TextField, TextArea, Button, IconButton },
 };
 </script>
 
