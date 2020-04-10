@@ -2,6 +2,11 @@
   <div class="container">
     <div>Component list</div>
     <hr width="100%" />
+
+    <span>TextField</span>
+    <TextField label="ラベル" />
+    <hr width="100%" />
+
     <span>TextArea</span>
     <TextArea label="ラベル" />
     <hr width="100%" />
@@ -10,9 +15,10 @@
 
 <script>
 import TextArea from '~/components/Inputs/TextArea';
+import TextField from '~/components/Inputs/TextField';
 
 export default {
-  components: { TextArea },
+  components: { TextField, TextArea },
 };
 </script>
 
