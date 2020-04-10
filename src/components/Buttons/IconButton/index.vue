@@ -1,5 +1,8 @@
 <template>
-  <button :class="{ root: true, 'with-icon': icon, [`variant-${variant}`]: true }">
+  <button
+    :class="{ root: true, 'with-icon': icon, [`variant-${variant}`]: true }"
+    @click="handleClick"
+  >
     <div v-if="icon" class="icon-wrapper">
       <SvgImage class="icon" :name="icon" />
     </div>
@@ -20,6 +23,11 @@ export default {
     variant: {
       type: String,
       default: 'main',
+    },
+  },
+  methods: {
+    handleClick(event) {
+      this.emit('click', event);
     },
   },
 };
