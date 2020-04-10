@@ -20,8 +20,14 @@
     <hr width="100%" />
 
     <span>ModalBase</span>
-    <Button variant="main" @click="openModalBase">Open Modal</Button>
-    <ModalBase :open="modalBaseOpen" @close="closeModalBase">ModalBase</ModalBase>
+    <Button variant="main" @click="handleClickOpenModalBase('center')">Open Modal Center</Button>
+    <Button variant="main" @click="handleClickOpenModalBase('top')">Open Modal Top</Button>
+    <Button variant="main" @click="handleClickOpenModalBase('right')">Open Modal Right</Button>
+    <Button variant="main" @click="handleClickOpenModalBase('bottom')">Open Modal Bottom</Button>
+    <Button variant="main" @click="handleClickOpenModalBase('left')">Open Modal Left</Button>
+    <ModalBase :position="modalBasePosition" :open="modalBaseOpen" @close="handleCloseModalBase"
+      >ModalBase</ModalBase
+    >
     <hr width="100%" />
   </div>
 </template>
@@ -37,13 +43,15 @@ export default {
   data() {
     return {
       modalBaseOpen: false,
+      modalBasePosition: 'center',
     };
   },
   methods: {
-    openModalBase() {
+    handleClickOpenModalBase(position) {
+      this.modalBasePosition = position;
       this.modalBaseOpen = true;
     },
-    closeModalBase() {
+    handleCloseModalBase() {
       this.modalBaseOpen = false;
     },
   },
