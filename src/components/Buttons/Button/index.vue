@@ -9,6 +9,7 @@
 
 <script>
 import SvgImage from '~/components/SvgImage';
+
 export default {
   name: 'Button',
   components: { SvgImage },
