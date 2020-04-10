@@ -10,15 +10,24 @@
     <span>TextArea</span>
     <TextArea label="ラベル" />
     <hr width="100%" />
+
+    <span>Button</span>
+    <Button variant="main">Button</Button>
+    <Button variant="lime">Button</Button>
+    <Button variant="white">Button</Button>
+    <Button variant="outline">Button</Button>
+    <Button icon="icon/edit" variant="main">Button</Button>
+    <hr width="100%" />
   </div>
 </template>
 
 <script>
-import TextArea from '~/components/Inputs/TextArea';
 import TextField from '~/components/Inputs/TextField';
+import TextArea from '~/components/Inputs/TextArea';
+import Button from '~/components/Buttons/Button';
 
 export default {
-  components: { TextField, TextArea },
+  components: { TextField, TextArea, Button },
 };
 </script>
 
