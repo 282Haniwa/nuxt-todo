@@ -19,6 +19,7 @@
 
 <script>
 export default {
+  name: 'TextArea',
   props: {
     value: {
       type: [String, null],
