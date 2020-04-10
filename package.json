@@ -23,7 +23,8 @@
     }
   },
   "dependencies": {
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "ress": "^2.0.4"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",
