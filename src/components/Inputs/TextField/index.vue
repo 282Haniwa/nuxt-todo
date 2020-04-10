@@ -18,6 +18,7 @@
 
 <script>
 export default {
+  name: 'TextField',
   props: {
     value: {
       type: [String, null],
