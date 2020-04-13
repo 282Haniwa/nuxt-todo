@@ -34,6 +34,12 @@
     <IconButton icon="icon/edit" variant="outline" />
     <hr width="100%" />
 
+    <span>IconToggleButton</span>
+    <IconToggleButton icon="icon/edit" />
+    <IconToggleButton icon="icon/edit" :value="true" />
+    <IconToggleButton icon="icon/edit" color="blue" active-color="lime" />
+    <hr width="100%" />
+
     <span>ModalBase</span>
     <Button variant="main" @click="handleClickOpenModalBase('center')">Open Modal Center</Button>
     <Button variant="main" @click="handleClickOpenModalBase('top')">Open Modal Top</Button>
@@ -53,10 +59,19 @@ import TextArea from '~/components/Inputs/TextArea';
 import SelectBox from '~/components/Inputs/SelectBox';
 import Button from '~/components/Buttons/Button';
 import IconButton from '~/components/Buttons/IconButton';
+import IconToggleButton from '~/components/Buttons/IconToggleButton';
 import ModalBase from '~/components/Modals/ModalBase';
 
 export default {
-  components: { TextField, TextArea, SelectBox, Button, IconButton, ModalBase },
+  components: {
+    TextField,
+    TextArea,
+    SelectBox,
+    Button,
+    IconButton,
+    IconToggleButton,
+    ModalBase,
+  },
   data() {
     return {
       modalBaseOpen: false,
