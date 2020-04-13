@@ -11,6 +11,10 @@
     <TextArea label="ラベル" />
     <hr width="100%" />
 
+    <span>CheckBox</span>
+    <CheckBox label="ラベル" />
+    <hr width="100%" />
+
     <span>Button</span>
     <Button variant="main">Button</Button>
     <Button variant="lime">Button</Button>
@@ -24,10 +28,11 @@
 <script>
 import TextField from '~/components/Inputs/TextField';
 import TextArea from '~/components/Inputs/TextArea';
+import CheckBox from '~/components/Inputs/CheckBox';
 import Button from '~/components/Buttons/Button';
 
 export default {
-  components: { TextField, TextArea, Button },
+  components: { TextField, TextArea, CheckBox, Button },
 };
 </script>
 
