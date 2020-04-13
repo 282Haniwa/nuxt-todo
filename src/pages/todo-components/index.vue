@@ -11,6 +11,14 @@
     <TextArea label="ラベル" />
     <hr width="100%" />
 
+    <span>SelectBox</span>
+    <SelectBox label="ラベル">
+      <option value="aaa">aaa</option>
+      <option value="bbb">bbb</option>
+      <option value="ccc">ccc</option>
+    </SelectBox>
+    <hr width="100%" />
+
     <span>Button</span>
     <Button variant="main">Button</Button>
     <Button variant="lime">Button</Button>
@@ -24,10 +32,11 @@
 <script>
 import TextField from '~/components/Inputs/TextField';
 import TextArea from '~/components/Inputs/TextArea';
+import SelectBox from '~/components/Inputs/SelectBox';
 import Button from '~/components/Buttons/Button';
 
 export default {
-  components: { TextField, TextArea, Button },
+  components: { TextField, TextArea, SelectBox, Button },
 };
 </script>
 
