@@ -19,6 +19,13 @@
     <Button icon="icon/edit" variant="main">Button</Button>
     <hr width="100%" />
 
+    <span>IconButton</span>
+    <IconButton icon="icon/edit" variant="main" />
+    <IconButton icon="icon/edit" variant="lime" />
+    <IconButton icon="icon/edit" variant="white" />
+    <IconButton icon="icon/edit" variant="outline" />
+    <hr width="100%" />
+
     <span>ModalBase</span>
     <Button variant="main" @click="handleClickOpenModalBase('center')">Open Modal Center</Button>
     <Button variant="main" @click="handleClickOpenModalBase('top')">Open Modal Top</Button>
@@ -36,10 +43,11 @@
 import TextField from '~/components/Inputs/TextField';
 import TextArea from '~/components/Inputs/TextArea';
 import Button from '~/components/Buttons/Button';
+import IconButton from '~/components/Buttons/IconButton';
 import ModalBase from '~/components/Modals/ModalBase';
 
 export default {
-  components: { TextField, TextArea, Button, ModalBase },
+  components: { TextField, TextArea, Button, IconButton, ModalBase },
   data() {
     return {
       modalBaseOpen: false,
