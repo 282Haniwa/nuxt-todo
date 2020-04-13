@@ -26,6 +26,24 @@
     <Button variant="outline">Button</Button>
     <Button icon="icon/edit" variant="main">Button</Button>
     <hr width="100%" />
+
+    <span>IconButton</span>
+    <IconButton icon="icon/edit" variant="main" />
+    <IconButton icon="icon/edit" variant="lime" />
+    <IconButton icon="icon/edit" variant="white" />
+    <IconButton icon="icon/edit" variant="outline" />
+    <hr width="100%" />
+
+    <span>ModalBase</span>
+    <Button variant="main" @click="handleClickOpenModalBase('center')">Open Modal Center</Button>
+    <Button variant="main" @click="handleClickOpenModalBase('top')">Open Modal Top</Button>
+    <Button variant="main" @click="handleClickOpenModalBase('right')">Open Modal Right</Button>
+    <Button variant="main" @click="handleClickOpenModalBase('bottom')">Open Modal Bottom</Button>
+    <Button variant="main" @click="handleClickOpenModalBase('left')">Open Modal Left</Button>
+    <ModalBase :position="modalBasePosition" :open="modalBaseOpen" @close="handleCloseModalBase"
+      >ModalBase</ModalBase
+    >
+    <hr width="100%" />
   </div>
 </template>
 
@@ -34,9 +52,26 @@ import TextField from '~/components/Inputs/TextField';
 import TextArea from '~/components/Inputs/TextArea';
 import SelectBox from '~/components/Inputs/SelectBox';
 import Button from '~/components/Buttons/Button';
+import IconButton from '~/components/Buttons/IconButton';
+import ModalBase from '~/components/Modals/ModalBase';
 
 export default {
-  components: { TextField, TextArea, SelectBox, Button },
+  components: { TextField, TextArea, SelectBox, Button, IconButton, ModalBase },
+  data() {
+    return {
+      modalBaseOpen: false,
+      modalBasePosition: 'center',
+    };
+  },
+  methods: {
+    handleClickOpenModalBase(position) {
+      this.modalBasePosition = position;
+      this.modalBaseOpen = true;
+    },
+    handleCloseModalBase() {
+      this.modalBaseOpen = false;
+    },
+  },
 };
 </script>
 

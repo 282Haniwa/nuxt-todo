@@ -6,7 +6,6 @@
     <div v-if="icon" class="icon-wrapper">
       <SvgImage class="icon" :name="icon" />
     </div>
-    <slot />
   </button>
 </template>
 
@@ -14,16 +13,12 @@
 import SvgImage from '~/components/SvgImage';
 
 export default {
-  name: 'Button',
+  name: 'IconButton',
   components: { SvgImage },
   props: {
     icon: {
       type: [String, null],
       default: null,
-    },
-    label: {
-      type: String,
-      default: '',
     },
     variant: {
       type: String,
@@ -32,7 +27,7 @@ export default {
   },
   methods: {
     handleClick(event) {
-      this.$emit('click', event);
+      this.emit('click', event);
     },
   },
 };
@@ -44,13 +39,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 114px;
-  border-radius: 5px;
-  padding: 5px 10px;
-
-  &.with-icon {
-    padding: 5px 34px;
-  }
+  border-radius: 50%;
+  padding: 4px;
 
   &.variant-main {
     color: $color-paper;
@@ -74,8 +64,6 @@ export default {
   }
 
   .icon-wrapper {
-    position: absolute;
-    left: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
