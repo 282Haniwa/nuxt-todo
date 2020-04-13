@@ -19,6 +19,10 @@
     </SelectBox>
     <hr width="100%" />
 
+    <span>CheckBox</span>
+    <CheckBox label="ラベル" />
+    <hr width="100%" />
+
     <span>Button</span>
     <Button variant="main">Button</Button>
     <Button variant="lime">Button</Button>
@@ -57,6 +61,7 @@
 import TextField from '~/components/Inputs/TextField';
 import TextArea from '~/components/Inputs/TextArea';
 import SelectBox from '~/components/Inputs/SelectBox';
+import CheckBox from '~/components/Inputs/CheckBox';
 import Button from '~/components/Buttons/Button';
 import IconButton from '~/components/Buttons/IconButton';
 import IconToggleButton from '~/components/Buttons/IconToggleButton';
@@ -67,6 +72,7 @@ export default {
     TextField,
     TextArea,
     SelectBox,
+    CheckBox,
     Button,
     IconButton,
     IconToggleButton,
