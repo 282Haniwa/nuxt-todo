@@ -3,7 +3,7 @@
 </docs>
 
 <template>
-  <div class="root">
+  <div class="text-area-root">
     <div v-if="label" class="label-wrapper">
       <label class="label">{{ label }}</label>
     </div>
@@ -34,12 +34,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.root {
+.text-area-root {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-width: 120px;
+  font-family: Sawarabi Gothic;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: $color-text;
+  line-height: 21px;
+  letter-spacing: 0.05em;
 }
 
 .label-wrapper {
@@ -47,15 +54,11 @@ export default {
 }
 
 .label {
-  font-family: Sawarabi Gothic;
-  font-style: normal;
-  font-weight: normal;
   font-size: 14px;
   line-height: 21px;
   display: flex;
   align-items: center;
-  letter-spacing: 0.05em;
-  color: $color-text;
+  color: inherit;
 }
 
 .text-field {
@@ -63,13 +66,6 @@ export default {
   border: 1px solid $color-border;
   box-sizing: border-box;
   border-radius: 5px;
-  font-family: Sawarabi Gothic;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  color: $color-text;
-  line-height: 21px;
-  letter-spacing: 0.05em;
   padding: 6px 11px 5px 11px;
   color: inherit;
 }

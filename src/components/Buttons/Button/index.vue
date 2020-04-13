@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="{ root: true, 'with-icon': icon, [`variant-${variant}`]: true }"
+    :class="{ 'button-root': true, 'with-icon': icon, [`variant-${variant}`]: true }"
     @click="handleClick"
   >
     <div v-if="icon" class="icon-wrapper">
@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.root {
+.button-root {
   position: relative;
   display: flex;
   align-items: center;
