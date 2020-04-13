@@ -23,10 +23,6 @@ export default {
   name: 'SelectBox',
   components: { SvgImage },
   props: {
-    value: {
-      type: [String, null],
-      default: '',
-    },
     label: {
       type: String,
       default: '',
