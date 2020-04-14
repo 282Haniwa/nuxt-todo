@@ -55,6 +55,15 @@
     >
     <hr width="100%" />
 
+    <span>SideMenu</span>
+    <SideMenu
+      :categories="sideMenuCategories"
+      :selected="sideMenuSelected"
+      @change="handleChangeSideMenuSelected"
+      @edit="handleEditSideMenuCategories"
+    />
+    <hr width="100%" />
+
     <span>TodoCard</span>
     <TodoCard
       :todo="{
@@ -64,6 +73,16 @@
         detail: 'hoge',
         checked: false,
         favorite: true,
+      }"
+    />
+    <TodoCard
+      :todo="{
+        title: '高沼カリキュラムを終わらせる',
+        category: 'work',
+        limit: new Date(2020, 3, 18),
+        detail: '',
+        checked: true,
+        favorite: false,
       }"
     />
     <hr width="100%" />
@@ -79,6 +98,7 @@ import Button from '~/components/Buttons/Button';
 import IconButton from '~/components/Buttons/IconButton';
 import IconToggleButton from '~/components/Buttons/IconToggleButton';
 import ModalBase from '~/components/Modals/ModalBase';
+import SideMenu from '~/components/SideMenu/SideMenu';
 import TodoCard from '~/components/Commons/TodoCard';
 
 export default {
@@ -91,12 +111,15 @@ export default {
     IconButton,
     IconToggleButton,
     ModalBase,
+    SideMenu,
     TodoCard,
   },
   data() {
     return {
       modalBaseOpen: false,
       modalBasePosition: 'center',
+      sideMenuCategories: ['aaaa', 'bbbb', 'cccc', 'dddd'],
+      sideMenuSelected: 'All',
     };
   },
   methods: {
@@ -106,6 +129,12 @@ export default {
     },
     handleCloseModalBase() {
       this.modalBaseOpen = false;
+    },
+    handleChangeSideMenuSelected(selected) {
+      this.sideMenuSelected = selected;
+    },
+    handleEditSideMenuCategories(categories) {
+      this.sideMenuCategories = categories;
     },
   },
 };
