@@ -51,13 +51,12 @@ export default {
   height: 100vh;
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: $z-index-modal;
 }
 
 .modal {
   position: fixed;
-  min-height: 100px;
-  min-width: 200px;
-  background-color: $color-paper;
+  z-index: $z-index-modal;
 
   &.center {
     top: 50%;
