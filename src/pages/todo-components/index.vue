@@ -54,6 +54,20 @@
       >ModalBase</ModalBase
     >
     <hr width="100%" />
+
+    <span>AlartDialog</span>
+    <Button variant="main" @click="handleClickOpenAlartDialog">Open AlartDialog</Button>
+    <AlartDialog
+      :open="alartDialogOpen"
+      title="警告"
+      action-text="削除"
+      cancel-text="キャンセル"
+      @close="handleCloseAlartDialog"
+      @action="handleActionAlartDialog"
+      @cancel="handleCancelAlartDialog"
+      >この操作は取り消し出来ません。カテゴリー「Work」を削除します。カテゴリーに登録されているタスクも全て削除されます</AlartDialog
+    >
+    <hr width="100%" />
   </div>
 </template>
 
@@ -66,6 +80,7 @@ import Button from '~/components/Buttons/Button';
 import IconButton from '~/components/Buttons/IconButton';
 import IconToggleButton from '~/components/Buttons/IconToggleButton';
 import ModalBase from '~/components/Modals/ModalBase';
+import AlartDialog from '~/components/Modals/AlartDialog';
 
 export default {
   components: {
@@ -77,11 +92,13 @@ export default {
     IconButton,
     IconToggleButton,
     ModalBase,
+    AlartDialog,
   },
   data() {
     return {
       modalBaseOpen: false,
       modalBasePosition: 'center',
+      alartDialogOpen: false,
     };
   },
   methods: {
@@ -91,6 +108,20 @@ export default {
     },
     handleCloseModalBase() {
       this.modalBaseOpen = false;
+    },
+    handleClickOpenAlartDialog() {
+      this.alartDialogOpen = true;
+    },
+    handleCloseAlartDialog() {
+      this.alartDialogOpen = false;
+    },
+    handleActionAlartDialog() {
+      this.alartDialogOpen = false;
+      console.log('action');
+    },
+    handleCancelAlartDialog() {
+      this.alartDialogOpen = false;
+      console.log('cancel');
     },
   },
 };
