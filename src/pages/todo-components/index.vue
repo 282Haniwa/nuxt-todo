@@ -54,6 +54,15 @@
       >ModalBase</ModalBase
     >
     <hr width="100%" />
+
+    <span>SideMenu</span>
+    <SideMenu
+      :categories="sideMenuCategories"
+      :selected="sideMenuSelected"
+      @change="handleChangeSideMenuSelected"
+      @edit="handleEditSideMenuCategories"
+    />
+    <hr width="100%" />
   </div>
 </template>
 
@@ -66,6 +75,7 @@ import Button from '~/components/Buttons/Button';
 import IconButton from '~/components/Buttons/IconButton';
 import IconToggleButton from '~/components/Buttons/IconToggleButton';
 import ModalBase from '~/components/Modals/ModalBase';
+import SideMenu from '~/components/SideMenu/SideMenu';
 
 export default {
   components: {
@@ -77,11 +87,14 @@ export default {
     IconButton,
     IconToggleButton,
     ModalBase,
+    SideMenu,
   },
   data() {
     return {
       modalBaseOpen: false,
       modalBasePosition: 'center',
+      sideMenuCategories: ['aaaa', 'bbbb', 'cccc', 'dddd'],
+      sideMenuSelected: 'All',
     };
   },
   methods: {
@@ -91,6 +104,12 @@ export default {
     },
     handleCloseModalBase() {
       this.modalBaseOpen = false;
+    },
+    handleChangeSideMenuSelected(selected) {
+      this.sideMenuSelected = selected;
+    },
+    handleEditSideMenuCategories(categories) {
+      this.sideMenuCategories = categories;
     },
   },
 };
