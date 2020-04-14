@@ -63,6 +63,29 @@
       @edit="handleEditSideMenuCategories"
     />
     <hr width="100%" />
+
+    <span>TodoCard</span>
+    <TodoCard
+      :todo="{
+        title: '高沼カリキュラムを終わらせる',
+        category: 'work',
+        limit: new Date(2020, 3, 18),
+        detail: 'hoge',
+        checked: false,
+        favorite: true,
+      }"
+    />
+    <TodoCard
+      :todo="{
+        title: '高沼カリキュラムを終わらせる',
+        category: 'work',
+        limit: new Date(2020, 3, 18),
+        detail: '',
+        checked: true,
+        favorite: false,
+      }"
+    />
+    <hr width="100%" />
   </div>
 </template>
 
@@ -76,6 +99,7 @@ import IconButton from '~/components/Buttons/IconButton';
 import IconToggleButton from '~/components/Buttons/IconToggleButton';
 import ModalBase from '~/components/Modals/ModalBase';
 import SideMenu from '~/components/SideMenu/SideMenu';
+import TodoCard from '~/components/Commons/TodoCard';
 
 export default {
   components: {
@@ -88,6 +112,7 @@ export default {
     IconToggleButton,
     ModalBase,
     SideMenu,
+    TodoCard,
   },
   data() {
     return {

@@ -42,8 +42,7 @@ export default {
   border-radius: 50%;
   padding: 4px;
   color: inherit;
-  background-color: inherit;
-  border: 1px solid inherit;
+  background-color: transparent;
 
   &.variant-main {
     color: $color-paper;
