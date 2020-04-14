@@ -54,6 +54,19 @@
       >ModalBase</ModalBase
     >
     <hr width="100%" />
+
+    <span>TodoCard</span>
+    <TodoCard
+      :todo="{
+        title: '高沼カリキュラムを終わらせる',
+        category: 'work',
+        limit: new Date(2020, 3, 18),
+        detail: 'hoge',
+        checked: false,
+        favorite: true,
+      }"
+    />
+    <hr width="100%" />
   </div>
 </template>
 
@@ -66,6 +79,7 @@ import Button from '~/components/Buttons/Button';
 import IconButton from '~/components/Buttons/IconButton';
 import IconToggleButton from '~/components/Buttons/IconToggleButton';
 import ModalBase from '~/components/Modals/ModalBase';
+import TodoCard from '~/components/Commons/TodoCard';
 
 export default {
   components: {
@@ -77,6 +91,7 @@ export default {
     IconButton,
     IconToggleButton,
     ModalBase,
+    TodoCard,
   },
   data() {
     return {
