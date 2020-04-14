@@ -6,11 +6,9 @@
   <div class="root">
     <label class="label">
       <input hidden :value="checked" type="checkbox" @change="handleChange" />
-      <div v-show="!checked" class="checkbox">
-        <SvgImage name="check/box" />
-      </div>
-      <div v-show="checked" class="checkbox">
-        <SvgImage name="check/check" />
+      <div class="checkbox">
+        <SvgImage v-if="!checked" name="check/box" />
+        <SvgImage v-if="checked" name="check/check" />
       </div>
       {{ label }}
     </label>
