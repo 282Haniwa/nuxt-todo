@@ -22,7 +22,7 @@ export default {
     },
     variant: {
       type: String,
-      default: 'main',
+      default: '',
     },
   },
   methods: {
@@ -41,6 +41,8 @@ export default {
   justify-content: center;
   border-radius: 50%;
   padding: 4px;
+  color: inherit;
+  background-color: transparent;
 
   &.variant-main {
     color: $color-paper;

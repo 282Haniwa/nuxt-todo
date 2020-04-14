@@ -24,7 +24,7 @@ export default {
     },
     variant: {
       type: String,
-      default: 'white',
+      default: '',
     },
     value: {
       type: Boolean,
