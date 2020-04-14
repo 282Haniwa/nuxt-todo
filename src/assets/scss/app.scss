@@ -1,3 +1,8 @@
 @charset "UTF-8";
 
 @import './base/_vars';
+@import './base/_fonts';
+
+button {
+    outline: none;
+}

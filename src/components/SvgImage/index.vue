@@ -13,7 +13,8 @@ export default {
   },
   computed: {
     svg() {
-      return () => import(`~/assets/img/${this.name}.svg`);
+      const imgName = this.name;
+      return () => import(`~/assets/img/${imgName}.svg`);
     },
   },
 };

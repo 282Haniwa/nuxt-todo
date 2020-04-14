@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="{ root: true, 'with-icon': icon, [`variant-${variant}`]: true }"
+    :class="{ 'icon-button-root': true, 'with-icon': icon, [`variant-${variant}`]: true }"
     @click="handleClick"
   >
     <div v-if="icon" class="icon-wrapper">
@@ -22,7 +22,7 @@ export default {
     },
     variant: {
       type: String,
-      default: 'main',
+      default: '',
     },
   },
   methods: {
@@ -34,13 +34,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.root {
+.icon-button-root {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   padding: 4px;
+  color: inherit;
+  background-color: transparent;
 
   &.variant-main {
     color: $color-paper;

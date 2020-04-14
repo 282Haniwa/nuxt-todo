@@ -3,14 +3,12 @@
 </docs>
 
 <template>
-  <div class="root">
+  <div class="check-box-root">
     <label class="label">
       <input hidden :value="checked" type="checkbox" @change="handleChange" />
-      <div v-show="!checked" class="checkbox">
-        <SvgImage name="check/box" />
-      </div>
-      <div v-show="checked" class="checkbox">
-        <SvgImage name="check/check" />
+      <div class="checkbox">
+        <SvgImage v-if="!checked" name="check/box" />
+        <SvgImage v-if="checked" name="check/check" />
       </div>
       {{ label }}
     </label>
@@ -49,26 +47,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.root {
+.check-box-root {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   min-width: 120px;
-}
-
-.label {
-  display: block;
-  width: 100%;
   font-family: Sawarabi Gothic;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 21px;
-  display: flex;
-  align-items: center;
   letter-spacing: 0.05em;
   color: $color-text;
+}
+
+.label {
+  display: block;
+  width: 100%;
+  display: flex;
+  align-items: center;
   cursor: pointer;
 }
 
