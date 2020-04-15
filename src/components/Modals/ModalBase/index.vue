@@ -20,6 +20,13 @@ export default {
       default: 'center',
     },
   },
+  watch: {
+    open(value) {
+      if (value === true) {
+        this.handleOpen();
+      }
+    },
+  },
   mounted() {
     window.addEventListener('keydown', this.handleKeyDown);
   },
@@ -27,6 +34,9 @@ export default {
     window.removeEventListener('keydown', this.handleKeyDown);
   },
   methods: {
+    handleOpen() {
+      this.$emit('open');
+    },
     handleClickOvelay(event) {
       this.$emit('close', 'clickOvelay', event);
     },

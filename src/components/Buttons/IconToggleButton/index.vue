@@ -43,6 +43,11 @@ export default {
       };
     },
   },
+  watch: {
+    value(value) {
+      this.active = value;
+    },
+  },
   methods: {
     handleClick(event) {
       this.active = !this.active;

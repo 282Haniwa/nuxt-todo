@@ -31,6 +31,7 @@ import Limit from './Limit';
 import IconButton from '~/components/Buttons/IconButton';
 import IconToggleButton from '~/components/Buttons/IconToggleButton';
 import CheckBox from '~/components/Inputs/CheckBox';
+import { defaultTodo } from '~/utils/default';
 
 export default {
   name: 'TodoCard',
@@ -43,14 +44,7 @@ export default {
   props: {
     todo: {
       type: Object,
-      default: () => ({
-        title: '',
-        category: '',
-        limit: new Date(),
-        detail: '',
-        checked: false,
-        favorite: false,
-      }),
+      default: () => defaultTodo,
     },
   },
   methods: {

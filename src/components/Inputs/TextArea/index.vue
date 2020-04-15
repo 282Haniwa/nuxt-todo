@@ -9,9 +9,8 @@
     </div>
     <textarea
       :value="value"
-      class="text-field"
+      class="text-area"
       type="text"
-      resize="none"
       @input="$emit('input', $event.target.value)"
     />
   </div>
@@ -61,12 +60,14 @@ export default {
   color: inherit;
 }
 
-.text-field {
+.text-area {
+  height: 100%;
   width: 100%;
   border: 1px solid $color-border;
   box-sizing: border-box;
   border-radius: 5px;
   padding: 6px 11px 5px 11px;
   color: inherit;
+  resize: none;
 }
 </style>

@@ -10,7 +10,7 @@
     <input
       :value="value"
       class="text-field"
-      type="text"
+      :type="type"
       @input="$emit('input', $event.target.value)"
       @change="$emit('change', $event.target.value)"
     />
@@ -28,6 +28,10 @@ export default {
     label: {
       type: String,
       default: '',
+    },
+    type: {
+      type: String,
+      default: 'text',
     },
   },
 };
