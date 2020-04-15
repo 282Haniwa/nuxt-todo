@@ -8,7 +8,7 @@
       <label class="label">{{ label }}</label>
     </div>
     <input
-      :value="value"
+      :value="textValue"
       class="text-field"
       type="date"
       @change="handleChange"
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import { format } from '~/utils/date';
+
 export default {
   name: 'TextField',
   props: {
@@ -28,6 +30,11 @@ export default {
     label: {
       type: String,
       default: '',
+    },
+  },
+  computed: {
+    textValue() {
+      return this.value && format(this.value, 'YYYY-MM-DD');
     },
   },
   methods: {
