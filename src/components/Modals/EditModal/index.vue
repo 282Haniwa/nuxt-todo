@@ -1,11 +1,5 @@
 <template>
-  <ModalBase
-    class="edit-modal-root"
-    position="right"
-    :open="open"
-    @open="handleOpen"
-    @close="handleCancel"
-  >
+  <ModalBase position="right" :open="open" @open="handleOpen" @close="handleCancel">
     <div class="edit-modal">
       <div class="header">
         <div class="header-text">{{ title }}</div>
@@ -139,11 +133,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.edit-modal-root {
-}
-
 .edit-modal {
+  height: 100vw;
   width: 348px;
+  background-color: $color-paper;
 }
 
 .header {
