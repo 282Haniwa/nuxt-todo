@@ -55,6 +55,23 @@
     >
     <hr width="100%" />
 
+    <span>EditModal</span>
+    <Button variant="main" @click="handleClickOpenEditModal">Open EditModal</Button>
+    <EditModal
+      title="Edit Task"
+      action-text="Add"
+      cancel-text="Cancel"
+      :open="editModalOpen"
+      :categories="sideMenuCategories"
+      :todo="editModalTodo"
+      @close="handleCloseEditModal"
+      @action="handleActionEditModal"
+      @cancel="handleCancelEditModal"
+      @delete="handleDeleteEditModal"
+      >この操作は取り消し出来ません。カテゴリー「Work」を削除します。カテゴリーに登録されているタスクも全て削除されます</EditModal
+    >
+    <hr width="100%" />
+
     <span>SideMenu</span>
     <SideMenu
       :categories="sideMenuCategories"
@@ -98,8 +115,10 @@ import Button from '~/components/Buttons/Button';
 import IconButton from '~/components/Buttons/IconButton';
 import IconToggleButton from '~/components/Buttons/IconToggleButton';
 import ModalBase from '~/components/Modals/ModalBase';
+import EditModal from '~/components/Modals/EditModal';
 import SideMenu from '~/components/SideMenu/SideMenu';
 import TodoCard from '~/components/Commons/TodoCard';
+import { defaultTodo } from '~/utils/default';
 
 export default {
   components: {
@@ -111,6 +130,7 @@ export default {
     IconButton,
     IconToggleButton,
     ModalBase,
+    EditModal,
     SideMenu,
     TodoCard,
   },
@@ -118,7 +138,16 @@ export default {
     return {
       modalBaseOpen: false,
       modalBasePosition: 'center',
-      sideMenuCategories: ['aaaa', 'bbbb', 'cccc', 'dddd'],
+      editModalOpen: false,
+      editModalTodo: {
+        title: '高沼カリキュラムを終わらせる',
+        category: 'work',
+        limit: new Date(2020, 3, 18),
+        detail: '',
+        checked: true,
+        favorite: false,
+      },
+      sideMenuCategories: ['work', 'お買い物リスト', '買いたい', 'House', 'その他'],
       sideMenuSelected: 'All',
     };
   },
@@ -135,6 +164,21 @@ export default {
     },
     handleEditSideMenuCategories(categories) {
       this.sideMenuCategories = categories;
+    },
+    handleClickOpenEditModal() {
+      this.editModalOpen = true;
+    },
+    handleCloseEditModal() {
+      this.editModalOpen = false;
+    },
+    handleActionEditModal(nextTodo) {
+      console.log('update', { ...nextTodo });
+      this.editModalTodo = nextTodo;
+    },
+    handleCancelEditModal() {},
+    handleDeleteEditModal() {
+      this.editModalTodo = defaultTodo;
+      this.editModalOpen = false;
     },
   },
 };
