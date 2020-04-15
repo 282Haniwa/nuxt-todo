@@ -9,7 +9,7 @@
     </div>
     <div class="select-wrapper">
       <SvgImage class="icon" name="icon/expand" />
-      <select id="" class="select" @change="handleChange">
+      <select class="select" :value="value" @change="handleChange" @input="handleInput">
         <slot />
       </select>
     </div>
@@ -27,10 +27,17 @@ export default {
       type: String,
       default: '',
     },
+    value: {
+      type: String,
+      default: '',
+    },
   },
   methods: {
     handleChange(event) {
-      this.$emit('change', event.target.value, event);
+      this.$emit('change', event.target.options[event.target.selectedIndex].value, event);
+    },
+    handleInput(event) {
+      this.$emit('input', event.target.options[event.target.selectedIndex].value, event);
     },
   },
 };
