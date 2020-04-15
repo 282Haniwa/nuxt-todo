@@ -1,6 +1,12 @@
 <template>
   <button
-    :class="{ 'button-root': true, 'with-icon': icon, [`variant-${variant}`]: true }"
+    :class="{
+      'button-root': true,
+      'with-icon': icon,
+      [`variant-${variant}`]: true,
+      disabled: disabled,
+    }"
+    :disabled="disabled"
     @click="handleClick"
   >
     <div v-if="icon" class="icon-wrapper">
@@ -29,6 +35,10 @@ export default {
       type: String,
       default: 'main',
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     handleClick(event) {
@@ -55,22 +65,39 @@ export default {
   &.variant-main {
     color: $color-paper;
     background-color: $color-main;
+
+    &.disabled {
+      background-color: $color-gray;
+    }
   }
 
   &.variant-lime {
     color: $color-text;
     background-color: $color-lime;
+
+    &.disabled {
+      color: $color-paper;
+      background-color: $color-gray;
+    }
   }
 
   &.variant-white {
     color: $color-main;
     background-color: $color-paper;
+
+    &.disabled {
+      color: $color-gray;
+    }
   }
 
   &.variant-outline {
     color: $color-text;
-    background-color: $color-paper;
+    background-color: transparent;
     border: 1px solid $color-border;
+
+    &.disabled {
+      color: $color-gray;
+    }
   }
 
   .icon-wrapper {
