@@ -3,7 +3,7 @@
     :class="{ 'icon-button-root': true, 'with-icon': icon, [`variant-${variant}`]: true }"
     @click="handleClick"
   >
-    <div v-if="icon" class="icon-wrapper">
+    <div v-if="icon" :height="height" :width="width" class="icon-wrapper">
       <SvgImage class="icon" :name="icon" />
     </div>
   </button>
@@ -23,6 +23,14 @@ export default {
     variant: {
       type: String,
       default: '',
+    },
+    height: {
+      type: String,
+      default: '24px',
+    },
+    width: {
+      type: String,
+      default: '24px',
     },
   },
   methods: {
@@ -69,8 +77,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 24px;
-    width: 24px;
   }
 }
 </style>

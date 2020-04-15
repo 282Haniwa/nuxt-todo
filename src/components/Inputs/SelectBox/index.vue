@@ -66,6 +66,7 @@ export default {
 
 .select-wrapper {
   position: relative;
+  width: 100%;
 }
 
 .icon {
