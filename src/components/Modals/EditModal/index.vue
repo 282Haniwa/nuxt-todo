@@ -18,7 +18,7 @@
         />
       </div>
       <div class="content">
-        <div class="icon-menu">
+        <div v-show="!hideIconMenu" class="icon-menu">
           <IconToggleButton
             class="icon-button"
             icon="icon/favorite"
@@ -40,7 +40,9 @@
       <div class="footer">
         <div class="button-wrapper">
           <Button class="button" variant="outline" @click="handleCancel">{{ cancelText }}</Button>
-          <Button class="button" variant="main" @click="handleAction">{{ actionText }}</Button>
+          <Button class="button" variant="main" :disabled="actionDisabled" @click="handleAction">{{
+            actionText
+          }}</Button>
         </div>
       </div>
     </div>
@@ -86,6 +88,14 @@ export default {
     cancelText: {
       type: String,
       default: '',
+    },
+    actionDisabled: {
+      type: Boolean,
+      default: false,
+    },
+    hideIconMenu: {
+      type: Boolean,
+      default: false,
     },
     categories: {
       type: Array,

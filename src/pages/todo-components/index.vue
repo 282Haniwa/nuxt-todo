@@ -64,6 +64,8 @@
       :open="editModalOpen"
       :categories="sideMenuCategories"
       :todo="editModalTodo"
+      :hide-icon-menu="false"
+      :action-disabled="false"
       @close="handleCloseEditModal"
       @action="handleActionEditModal"
       @cancel="handleCancelEditModal"
@@ -172,7 +174,6 @@ export default {
       this.editModalOpen = false;
     },
     handleActionEditModal(nextTodo) {
-      console.log('update', { ...nextTodo });
       this.editModalTodo = nextTodo;
     },
     handleCancelEditModal() {},
