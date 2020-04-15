@@ -55,6 +55,20 @@
     >
     <hr width="100%" />
 
+    <span>AlartDialog</span>
+    <Button variant="main" @click="handleClickOpenAlartDialog">Open AlartDialog</Button>
+    <AlartDialog
+      :open="alartDialogOpen"
+      title="警告"
+      action-text="削除"
+      cancel-text="キャンセル"
+      @close="handleCloseAlartDialog"
+      @action="handleActionAlartDialog"
+      @cancel="handleCancelAlartDialog"
+      >この操作は取り消し出来ません。カテゴリー「Work」を削除します。カテゴリーに登録されているタスクも全て削除されます</AlartDialog
+    >
+    <hr width="100%" />
+
     <span>EditModal</span>
     <Button variant="main" @click="handleClickOpenEditModal">Open EditModal</Button>
     <EditModal
@@ -70,8 +84,7 @@
       @action="handleActionEditModal"
       @cancel="handleCancelEditModal"
       @delete="handleDeleteEditModal"
-      >この操作は取り消し出来ません。カテゴリー「Work」を削除します。カテゴリーに登録されているタスクも全て削除されます</EditModal
-    >
+    />
     <hr width="100%" />
 
     <span>SideMenu</span>
@@ -117,6 +130,7 @@ import Button from '~/components/Buttons/Button';
 import IconButton from '~/components/Buttons/IconButton';
 import IconToggleButton from '~/components/Buttons/IconToggleButton';
 import ModalBase from '~/components/Modals/ModalBase';
+import AlartDialog from '~/components/Modals/AlartDialog';
 import EditModal from '~/components/Modals/EditModal';
 import SideMenu from '~/components/SideMenu/SideMenu';
 import TodoCard from '~/components/Commons/TodoCard';
@@ -132,6 +146,7 @@ export default {
     IconButton,
     IconToggleButton,
     ModalBase,
+    AlartDialog,
     EditModal,
     SideMenu,
     TodoCard,
@@ -140,6 +155,7 @@ export default {
     return {
       modalBaseOpen: false,
       modalBasePosition: 'center',
+      alartDialogOpen: false,
       editModalOpen: false,
       editModalTodo: {
         title: '高沼カリキュラムを終わらせる',
@@ -161,11 +177,17 @@ export default {
     handleCloseModalBase() {
       this.modalBaseOpen = false;
     },
-    handleChangeSideMenuSelected(selected) {
-      this.sideMenuSelected = selected;
+    handleClickOpenAlartDialog() {
+      this.alartDialogOpen = true;
     },
-    handleEditSideMenuCategories(categories) {
-      this.sideMenuCategories = categories;
+    handleCloseAlartDialog() {
+      this.alartDialogOpen = false;
+    },
+    handleActionAlartDialog() {
+      this.alartDialogOpen = false;
+    },
+    handleCancelAlartDialog() {
+      this.alartDialogOpen = false;
     },
     handleClickOpenEditModal() {
       this.editModalOpen = true;
@@ -180,6 +202,12 @@ export default {
     handleDeleteEditModal() {
       this.editModalTodo = defaultTodo;
       this.editModalOpen = false;
+    },
+    handleChangeSideMenuSelected(selected) {
+      this.sideMenuSelected = selected;
+    },
+    handleEditSideMenuCategories(categories) {
+      this.sideMenuCategories = categories;
     },
   },
 };
