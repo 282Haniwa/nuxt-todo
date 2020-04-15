@@ -4,13 +4,14 @@
 
 <template>
   <div class="text-field-root">
-    <div v-if="label" class="label-wrapper">
-      <label class="label">{{ label }}</label>
+    <div v-if="label" class="text-field-label-wrapper">
+      <label class="text-field-label">{{ label }}</label>
     </div>
     <input
+      class="text-field-input"
       :value="value"
-      class="text-field"
       :type="type"
+      :placeholder="placeholder"
       @input="$emit('input', $event.target.value)"
       @change="$emit('change', $event.target.value)"
     />
@@ -33,6 +34,10 @@ export default {
       type: String,
       default: 'text',
     },
+    placeholder: {
+      type: String,
+      default: '',
+    },
   },
 };
 </script>
@@ -53,11 +58,11 @@ export default {
   letter-spacing: 0.05em;
 }
 
-.label-wrapper {
+.text-field-label-wrapper {
   width: 100%;
 }
 
-.label {
+.text-field-label {
   font-size: 14px;
   line-height: 21px;
   display: flex;
@@ -65,12 +70,13 @@ export default {
   color: inherit;
 }
 
-.text-field {
+.text-field-input {
+  height: 100%;
   width: 100%;
   border: 1px solid $color-border;
   box-sizing: border-box;
   border-radius: 5px;
-  padding: 6px 11px 5px 11px;
+  padding: 3% 6%;
   color: inherit;
 }
 </style>

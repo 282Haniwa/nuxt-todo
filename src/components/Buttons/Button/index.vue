@@ -33,7 +33,7 @@ export default {
     },
     variant: {
       type: String,
-      default: 'main',
+      default: '',
     },
     disabled: {
       type: Boolean,
