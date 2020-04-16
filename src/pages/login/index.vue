@@ -11,6 +11,7 @@
     <div class="title">ログイン</div>
     <TextField v-model="email" class="field" type="email" placeholder="email" />
     <TextField v-model="password" class="field" type="password" placeholder="password" />
+    <div class="text">{{ errorMessage }}</div>
     <div class="button-wrapper">
       <Button class="button" variant="lime" @click="login">Login</Button>
       <Button class="button" to="/register"><span class="register">Register</span></Button>
@@ -31,18 +32,23 @@ export default {
   },
   data() {
     return {
-      email: 'k_usui@gmail.com',
-      password: '123456',
+      email: '',
+      password: '',
+      errorMessage: '',
     };
   },
   methods: {
     login() {
-      this.$auth.loginWith('local', {
-        data: {
-          email: this.email,
-          password: this.password,
-        },
-      });
+      this.$auth
+        .loginWith('local', {
+          data: {
+            email: this.email,
+            password: this.password,
+          },
+        })
+        .catch(() => {
+          this.errorMessage = 'ログインできませんでした';
+        });
     },
   },
 };
