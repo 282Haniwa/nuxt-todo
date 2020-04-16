@@ -33,16 +33,23 @@ export default {
     },
     variant: {
       type: String,
-      default: 'main',
+      default: '',
     },
     disabled: {
       type: Boolean,
       default: false,
     },
+    to: {
+      type: String,
+      default: '',
+    },
   },
   methods: {
     handleClick(event) {
       this.$emit('click', event);
+      if (this.to) {
+        this.$router.push(this.to);
+      }
     },
   },
 };
