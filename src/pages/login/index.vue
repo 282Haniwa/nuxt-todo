@@ -39,6 +39,12 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-image: linear-gradient($color-image-overlay, $color-image-overlay),
+    url('/img/back_image.jpeg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .logo {
