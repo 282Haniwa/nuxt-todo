@@ -114,9 +114,9 @@ export default {
   &::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 15%;
-    width: 70%;
+    bottom: 8px;
+    left: 25%;
+    width: 50%;
     height: 2px;
     border-bottom: solid 1px $color-paper;
   }
