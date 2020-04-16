@@ -9,11 +9,11 @@
     />
     <div class="text">これをマスターすれば天才エンジニア？高沼カリキュラム</div>
     <div class="title">ログイン</div>
-    <TextField class="field" type="email" placeholder="email" />
-    <TextField class="field" type="password" placeholder="password" />
+    <TextField v-model="email" class="field" type="email" placeholder="email" />
+    <TextField v-model="password" class="field" type="password" placeholder="password" />
     <div class="button-wrapper">
-      <Button class="button" variant="lime">Login</Button>
-      <Button class="button"><span class="register">Register</span></Button>
+      <Button class="button" variant="lime" @click="login">Login</Button>
+      <Button class="button" to="/register"><span class="register">Register</span></Button>
     </div>
   </div>
 </template>
@@ -29,6 +29,22 @@ export default {
     TextField,
     Button,
   },
+  data() {
+    return {
+      email: 'k_usui@gmail.com',
+      password: '123456',
+    };
+  },
+  methods: {
+    login() {
+      this.$auth.loginWith('local', {
+        data: {
+          email: this.email,
+          password: this.password,
+        },
+      });
+    },
+  },
 };
 </script>
 
@@ -39,6 +55,12 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-image: linear-gradient($color-image-overlay, $color-image-overlay),
+    url('/img/back_image.jpeg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .logo {
@@ -120,16 +142,5 @@ export default {
     height: 2px;
     border-bottom: solid 1px $color-paper;
   }
-}
-</style>
-
-<style lang="scss">
-body {
-  background-image: linear-gradient($color-image-overlay, $color-image-overlay),
-    url('/img/back_image.jpeg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 </style>

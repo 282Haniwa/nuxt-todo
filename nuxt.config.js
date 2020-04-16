@@ -41,7 +41,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/style-resources'],
+  modules: ['@nuxtjs/style-resources', '@nuxtjs/axios', '@nuxtjs/auth'],
   /*
    ** styleResources modules
    */
@@ -64,6 +64,26 @@ export default {
         test: /\.svg$/,
         use: ['babel-loader', 'vue-svg-loader'],
       });
+    },
+  },
+  axios: {
+    baseURL: 'https://asia-northeast1-next-todo-002.cloudfunctions.net/api',
+  },
+  auth: {
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      callback: false,
+      home: '/',
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/users/login', method: 'post', propertyName: 'token' },
+          user: false,
+          logout: false,
+        },
+      },
     },
   },
 };
