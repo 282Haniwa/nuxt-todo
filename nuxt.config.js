@@ -66,6 +66,9 @@ export default {
       });
     },
   },
+  router: {
+    middleware: 'auth',
+  },
   axios: {
     baseURL: 'https://asia-northeast1-next-todo-002.cloudfunctions.net/api',
   },
@@ -74,7 +77,7 @@ export default {
       login: '/login',
       logout: '/login',
       callback: false,
-      home: '/',
+      home: '/todo',
     },
     strategies: {
       local: {
