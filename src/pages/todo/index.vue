@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    <SideMenu class="side-menu" />
+    <SideMenu
+      class="side-menu"
+      :categories="categories"
+      :selected="selected"
+      @change="handleChangeSelected"
+    />
     <div class="contents-wrapper">
       <div class="header">{{ selected }}</div>
       <div class="todo-wrapper">
@@ -8,15 +13,20 @@
           <div class="label">Task</div>
           <div class="select-label">Sorted By</div>
           <SelectBox v-model="order" class="select-box">
-            <option value="created-at">Created At</option>
-            <option value="categories">Categories</option>
             <option value="limit">Limit</option>
+            <option value="created_at">Created At</option>
+            <option value="category">Categories</option>
           </SelectBox>
           <div class="padding"></div>
           <Button class="button" icon="icon/add" variant="lime">Add Task</Button>
         </div>
         <div class="todo-list">
-          <TodoCard v-for="todo in todoList" :key="todo.id" class="todo-item" :todo="todo" />
+          <TodoCard
+            v-for="todo in displayedTodoList"
+            :key="todo.id"
+            class="todo-item"
+            :todo="todo"
+          />
         </div>
       </div>
     </div>
@@ -37,23 +47,54 @@ export default {
     Button,
     SelectBox,
   },
+  async fetch({ store, params }) {
+    await store.dispatch('todo/getCategories');
+    await store.dispatch('todo/getTodoList');
+  },
   data() {
     return {
-      selected: 'All Categories',
-      order: 'created-at',
+      selected: 'All',
+      order: 'limit',
     };
   },
   computed: {
     todoList() {
       return this.$store.state.todo.todoList;
     },
-  },
-  mounted() {
-    this.todoList = this.getTodoList();
+    displayedTodoList() {
+      let filteredTodoList = [];
+      if (this.selected === 'All') {
+        filteredTodoList = [...this.todoList];
+      } else {
+        filteredTodoList = [
+          ...this.todoList.filter((todo) => {
+            return todo.category === this.selected;
+          }),
+        ];
+      }
+
+      return filteredTodoList.sort((a, b) => {
+        if (a[this.order] < b[this.order]) {
+          return -1;
+        }
+        if (a[this.order] > b[this.order]) {
+          return 1;
+        }
+
+        return 0;
+      });
+    },
+    categories() {
+      return this.$store.state.todo.categories;
+    },
   },
   methods: {
+    handleChangeSelected(value) {
+      this.selected = value;
+    },
     ...mapActions({
       getTodoList: 'todo/getTodoList',
+      getCategories: 'todo/getCategories',
     }),
   },
 };

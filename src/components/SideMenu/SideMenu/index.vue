@@ -12,7 +12,7 @@
     />
     <MenuItem
       :class="{ 'menu-item': true, selected: selected === 'Favorites' }"
-      :disable="edit"
+      :disable="true"
       value="Favorites"
       @click="handleSelect"
     />
@@ -23,11 +23,11 @@
 
     <MenuItem
       v-for="(category, index) in categories"
-      :key="`${category}-${index}`"
-      :class="{ 'menu-item': true, selected: selected === category }"
+      :key="category.id"
+      :class="{ 'menu-item': true, selected: selected === category.name }"
       :disable="edit"
       :edit="edit"
-      :value="category"
+      :value="category.name"
       @change="(value) => handleChangeCategory(index, value)"
       @click="handleSelect"
       @delete="handleDeleteCategory(index)"
