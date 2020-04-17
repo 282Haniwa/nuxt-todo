@@ -24,8 +24,8 @@
         </div>
         <TextField v-model="editTodo.title" class="input" label="Title" />
         <SelectBox v-model="editTodo.category" class="input" label="Category">
-          <option v-for="category in categories" :key="category" :value="category">{{
-            category
+          <option v-for="category in categories" :key="category.id" :value="category.name">{{
+            category.name
           }}</option>
         </SelectBox>
         <DatePicker v-model="editTodo.limit" class="input" label="Limit" type="date" />
@@ -34,9 +34,13 @@
       <div class="footer">
         <div class="button-wrapper">
           <Button class="button" variant="outline" @click="handleCancel">{{ cancelText }}</Button>
-          <Button class="button" variant="main" :disabled="actionDisabled" @click="handleAction">{{
-            actionText
-          }}</Button>
+          <Button
+            class="button"
+            variant="main"
+            :disabled="!validTodoContent"
+            @click="handleAction"
+            >{{ actionText }}</Button
+          >
         </div>
       </div>
     </div>
@@ -83,10 +87,6 @@ export default {
       type: String,
       default: '',
     },
-    actionDisabled: {
-      type: Boolean,
-      default: false,
-    },
     hideIconMenu: {
       type: Boolean,
       default: false,
@@ -104,6 +104,11 @@ export default {
     return {
       editTodo: { ...this.todo },
     };
+  },
+  computed: {
+    validTodoContent() {
+      return this.editTodo.title && this.editTodo.limit;
+    },
   },
   methods: {
     handleOpen(event) {

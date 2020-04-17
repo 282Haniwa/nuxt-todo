@@ -18,7 +18,9 @@
             <option value="category">Categories</option>
           </SelectBox>
           <div class="padding"></div>
-          <Button class="button" icon="icon/add" variant="lime">Add Task</Button>
+          <Button class="button" icon="icon/add" variant="lime" @click="handleClickAddButton"
+            >Add Task</Button
+          >
         </div>
         <div class="todo-list">
           <TodoCard
@@ -30,15 +32,27 @@
         </div>
       </div>
     </div>
+    <EditModal
+      :open="editModalOpen"
+      :title="editModalTitle"
+      :action-text="editModalActionText"
+      cancel-text="Cancel"
+      :hide-icon-menu="editModalMode === 'add'"
+      :categories="categories"
+      :todo="editModalTodo"
+      @action="handleSubmitTodo"
+      @close="handleCloseEditModal"
+    />
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
 import SideMenu from '~/components/SideMenu/SideMenu';
 import TodoCard from '~/components/Commons/TodoCard';
 import Button from '~/components/Buttons/Button';
 import SelectBox from '~/components/Inputs/SelectBox';
+import EditModal from '~/components/Modals/EditModal';
+import { defaultTodo } from '~/utils/default';
 
 export default {
   components: {
@@ -46,6 +60,7 @@ export default {
     TodoCard,
     Button,
     SelectBox,
+    EditModal,
   },
   async fetch({ store, params }) {
     await store.dispatch('todo/getCategories');
@@ -55,6 +70,9 @@ export default {
     return {
       selected: 'All',
       order: 'limit',
+      editModalOpen: false,
+      editModalMode: '',
+      editModalTodo: defaultTodo,
     };
   },
   computed: {
@@ -87,20 +105,48 @@ export default {
     categories() {
       return this.$store.state.todo.categories;
     },
+    editModalTitle() {
+      if (this.editModalMode === 'add') {
+        return 'Add new Task';
+      } else if (this.editModalMode === 'edit') {
+        return 'Edit Task';
+      } else {
+        return '';
+      }
+    },
+    editModalActionText() {
+      if (this.editModalMode === 'add') {
+        return 'Add';
+      } else if (this.editModalMode === 'edit') {
+        return 'Update';
+      } else {
+        return '';
+      }
+    },
   },
   methods: {
     handleChangeSelected(value) {
       this.selected = value;
     },
-    ...mapActions({
-      getTodoList: 'todo/getTodoList',
-      getCategories: 'todo/getCategories',
-    }),
+    handleClickAddButton() {
+      this.editModalMode = 'add';
+      this.editModalOpen = true;
+    },
+    handleCloseEditModal() {
+      this.editModalOpen = false;
+    },
+    handleSubmitTodo(value) {
+      if (this.editModalMode === 'add') {
+        this.$store.dispatch('todo/addTodo', value);
+      }
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+$header-height: 96px;
+
 .container {
   height: 100vh;
   width: 100vw;
@@ -123,7 +169,7 @@ export default {
 }
 
 .header {
-  height: 96px;
+  height: $header-height;
   width: 100%;
   padding: 0 32px;
   flex-grow: 0;
@@ -141,7 +187,7 @@ export default {
 }
 
 .todo-wrapper {
-  height: 100%;
+  height: calc(100% - #{$header-height});
   width: 100%;
   padding: 32px;
   display: flex;
@@ -212,6 +258,7 @@ export default {
 
 .todo-list {
   width: 100%;
+  overflow-y: scroll;
 }
 
 .todo-item {

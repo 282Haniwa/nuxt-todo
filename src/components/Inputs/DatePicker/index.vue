@@ -39,11 +39,11 @@ export default {
   },
   methods: {
     handleChange(event) {
-      const date = event.target.value && new Date(event.target.value);
+      const date = event.target.value ? new Date(event.target.value) : null;
       this.$emit('change', date, event);
     },
     handleInput(event) {
-      const date = event.target.value && new Date(event.target.value);
+      const date = event.target.value ? new Date(event.target.value) : null;
       this.$emit('input', date, event);
     },
   },
