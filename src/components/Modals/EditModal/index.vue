@@ -24,9 +24,12 @@
         </div>
         <TextField v-model="editTodo.title" class="input" label="Title" />
         <SelectBox v-model="editTodo.category" class="input" label="Category">
-          <option v-for="category in categories" :key="category.id" :value="category.name">{{
-            category.name
-          }}</option>
+          <option
+            v-for="(category, index) in categories"
+            :key="category.id || `${category.name}-${index}`"
+            :value="category.name"
+            >{{ category.name }}</option
+          >
         </SelectBox>
         <DatePicker v-model="editTodo.limit" class="input" label="Limit" type="date" />
         <TextArea v-model="editTodo.detail" class="input detail-input" label="Detail" />

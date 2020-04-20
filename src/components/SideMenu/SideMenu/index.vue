@@ -22,8 +22,8 @@
     </div>
 
     <MenuItem
-      v-for="(category, index) in categories"
-      :key="category.id"
+      v-for="(category, index) in nextCategories"
+      :key="category.id || `${category.name}-${index}`"
       :class="{ 'menu-item': true, selected: selected === category.name }"
       :disable="edit"
       :edit="edit"
@@ -55,6 +55,7 @@
 import MenuItem from '../MenuItem';
 import Button from '~/components/Buttons/Button';
 import SvgImage from '~/components/SvgImage';
+import { defaultCategory } from '~/utils/default';
 
 export default {
   name: 'SideMenu',
@@ -75,13 +76,16 @@ export default {
   },
   data() {
     return {
-      nextCategories: this.categories,
+      nextCategories: [...this.categories],
       edit: false,
     };
   },
   methods: {
     handleChangeCategory(index, value) {
-      this.nextCategories.splice(index, 1, value);
+      this.nextCategories.splice(index, 1, {
+        ...this.nextCategories[index],
+        name: value,
+      });
     },
     handleDeleteCategory(index) {
       this.nextCategories.splice(index, 1);
@@ -93,7 +97,7 @@ export default {
       this.edit = true;
     },
     handleClickAddButton() {
-      this.nextCategories.push('');
+      this.nextCategories.push(defaultCategory);
     },
     handleClickSaveButton() {
       const categories = this.nextCategories.filter((category, index, self) => {

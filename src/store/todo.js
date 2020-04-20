@@ -34,4 +34,41 @@ export const actions = {
     const response = await this.$axios.$get('/categories');
     commit('setCategories', response);
   },
+  async updateCategory({ commit, state }, data) {
+    // 削除されたカテゴリの処理
+    const nextCategoriesIdList = data.map((category) => category.id);
+    await Promise.all(
+      state.categories.map((prevCategory) => {
+        if (!nextCategoriesIdList.includes(prevCategory.id)) {
+          return this.$axios.$delete(`/categories/${prevCategory.id}`);
+        }
+      })
+    );
+
+    // 追加・更新されたカテゴリの処理
+    await Promise.all(
+      data.map((nextCategory) => {
+        if (!nextCategory.id) {
+          return this.$axios.$post('/categories', nextCategory);
+        }
+
+        if (
+          state.categories.some(
+            (prevCategory) =>
+              prevCategory.id === nextCategory.id && prevCategory.name !== nextCategory.name
+          )
+        ) {
+          return this.$axios.$patch(`/categories/${nextCategory.id}`, {
+            name: nextCategory.name,
+          });
+        }
+
+        return nextCategory;
+      })
+    );
+
+    // 更新されたカテゴリの取得
+    const categories = await this.$axios.$get('/categories');
+    commit('setCategories', [...categories]);
+  },
 };

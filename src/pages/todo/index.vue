@@ -5,6 +5,7 @@
       :categories="categories"
       :selected="selected"
       @change="handleChangeSelected"
+      @edit="handleEditCategories"
     />
     <div class="contents-wrapper">
       <div class="header">{{ selected }}</div>
@@ -139,6 +140,9 @@ export default {
       if (this.editModalMode === 'add') {
         this.$store.dispatch('todo/addTodo', value);
       }
+    },
+    handleEditCategories(value) {
+      this.$store.dispatch('todo/updateCategory', value);
     },
   },
 };

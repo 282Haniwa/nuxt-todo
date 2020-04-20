@@ -6,3 +6,7 @@ export const defaultTodo = {
   checked: false,
   favorite: false,
 };
+
+export const defaultCategory = {
+  name: '',
+};
